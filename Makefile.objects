@@ -1,0 +1,8 @@
+etcd.lo: /Users/chunsheng/Projects/open-source/php-src_PHP-7.0/ext/etcd/etcd.c
+	$(LIBTOOL) --mode=compile $(CC) -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -I. -I/Users/chunsheng/Projects/open-source/php-src_PHP-7.0/ext/etcd $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /Users/chunsheng/Projects/open-source/php-src_PHP-7.0/ext/etcd/etcd.c -o etcd.lo 
+$(phplibdir)/etcd.la: ./etcd.la
+	$(LIBTOOL) --mode=install cp ./etcd.la $(phplibdir)
+
+./etcd.la: $(shared_objects_etcd) $(ETCD_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_etcd) $(ETCD_SHARED_LIBADD)
+
